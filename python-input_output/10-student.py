@@ -14,7 +14,6 @@ class Student:
 
     def to_json(self, attrs=None):
         """Return a dictionary representation of the Student.
-        
         If `attrs` is a list of strings, only those attributes
         will be included in the returned dictionary.
         """
