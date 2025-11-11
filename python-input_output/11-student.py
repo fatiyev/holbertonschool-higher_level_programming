@@ -1,11 +1,9 @@
 #!/usr/bin/python3
-"""Student
-"""
+"""Student"""
 
 
 class Student:
-    """Contains student data
-    """
+    """Contains student data"""
 
     def __init__(self, first_name, last_name, age):
         self.first_name = first_name
@@ -13,8 +11,7 @@ class Student:
         self.age = age
 
     def to_json(self, attrs=None):
-        """Retrieves dictionary of Student with conditions to filter
-        """
+        """Retrieves dictionary of Student with conditions to filter"""
 
         if attrs == None or type(attrs) != list:
             return self.__dict__
@@ -28,8 +25,7 @@ class Student:
             return temp
 
     def reload_from_json(self, json):
-        """Replaces all items in `json`
-        """
+        """Replaces all items in `json`"""
 
         for items in json.keys():
             self.__dict__[items] = json[items]
