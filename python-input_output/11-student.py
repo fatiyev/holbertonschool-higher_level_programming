@@ -1,31 +1,35 @@
 #!/usr/bin/python3
-"""Student"""
+"""Student module
+"""
 
 
 class Student:
-    """Contains student data"""
+    """Represents a student with basic attributes."""
 
     def __init__(self, first_name, last_name, age):
+        """Initialize a new Student."""
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
-        """Retrieves dictionary of Student with conditions to filter"""
+        """Return a dictionary representation of the Student.
 
-        if attrs == None or type(attrs) != list:
+        If `attrs` is a list of strings, only those attributes
+        will be included in the returned dictionary.
+        """
+        if attrs is None or not isinstance(attrs, list):
             return self.__dict__
-        else:
-            temp = {}
-            for elem in attrs:
-                if type(elem) != str:
-                    return self.__dict__
-                if elem in self.__dict__.keys():
-                    temp[elem] = self.__dict__[elem]
-            return temp
+
+        filtered = {}
+        for attr in attrs:
+            if not isinstance(attr, str):
+                return self.__dict__
+            if attr in self.__dict__:
+                filtered[attr] = self.__dict__[attr]
+        return filtered
 
     def reload_from_json(self, json):
-        """Replaces all items in `json`"""
-
-        for items in json.keys():
-            self.__dict__[items] = json[items]
+        """Replace all attributes of the Student using a JSON dictionary."""
+        for key, value in json.items():
+            self.__dict__[key] = value
