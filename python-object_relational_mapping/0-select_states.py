@@ -1,32 +1,47 @@
 #!/usr/bin/python3
 """Script that lists all states from database hbtn_0e_0_usa"""
+
 import MySQLdb
 import sys
 
 
 def get_states():
-    """Takes arguments argv to list from database
+    """Connects to MySQL and lists all states"""
 
-    Arguments:
-        argv[1]: mysql username
-        argv[2]: mysql password
-        argv[3]: database name
-    """
-    db = MySQLdb.connect(host="localhost",
-                         port=3306,
-                         user=sys.argv[1],
-                         passwd=sys.argv[2],
-                         db=sys.argv[3])
+    if len(sys.argv) != 4:
+        print("Usage: ./script.py <mysql username> <mysql password> <database name>")
+        sys.exit(1)
 
-    cur = db.cursor()
+    username = sys.argv[1]
+    password = sys.argv[2]
+    db_name = sys.argv[3]
 
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
-    rows = cur.fetchall()
-    for i in rows:
-        print(i)
+    try:
+        db = MySQLdb.connect(
+            host="localhost",
+            port=3306,
+            user=username,
+            passwd=password,
+            db=db_name
+        )
 
-    cur.close()
-    db.close()
+        cur = db.cursor()
+        cur.execute("SELECT * FROM states ORDER BY id ASC")
+
+        rows = cur.fetchall()
+        for row in rows:
+            print(row)
+
+    except MySQLdb.Error as e:
+        print(f"MySQL Error: {e}")
+
+    finally:
+        try:
+            cur.close()
+            db.close()
+        except:
+            pass
+
 
 if __name__ == "__main__":
     get_states()
