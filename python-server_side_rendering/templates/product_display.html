@@ -1,0 +1,50 @@
+<!doctype html>
+    <html lang="en">
+    <head>
+        <title>My Flask App</title>
+    </head>
+    <body>
+        {% include "header.html" %}
+        <h1>Product Display</h1>
+        <p>This is what we sell.</p>
+        {% if message %}
+        <p>{{ message }}</p>
+        {% else %}
+            {% if items %}
+            <table>
+                <thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Category</th>
+						<th scope="col">Price</th>
+					</tr>
+				</thead>
+                <tbody>
+                    {% if id %}
+                        {% for item in items %}
+                            {% if item.id == id %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.category }}</td>
+                                <td>{{ item.price }}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        {% for item in items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.category }}</td>
+                            <td>{{ item.price }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+            {% else %}
+                ...
+            {% endif %}
+        {% endif %}
+        {% include "footer.html" %}
+    </body>
+    </html>
