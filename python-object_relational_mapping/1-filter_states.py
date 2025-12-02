@@ -33,6 +33,6 @@ def get_states_n():
     except MySQLdb.Error as e:
         print(f"MySQL Error: {e}")
 
-
+ 
 if __name__ == "__main__":
     get_states_n()
