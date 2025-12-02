@@ -21,7 +21,6 @@ def get_states_n():
                              db=sys.argv[3])
 
         cur = db.cursor()
-
         cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id")
         rows = cur.fetchall()
         for i in rows:
