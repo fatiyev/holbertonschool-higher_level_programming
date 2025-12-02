@@ -40,7 +40,7 @@ def get_states():
             cur.close()
             db.close()
         except:
-            pass 
+            pass
 
 
 if __name__ == "__main__":
