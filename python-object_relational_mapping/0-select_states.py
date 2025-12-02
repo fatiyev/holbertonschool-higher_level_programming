@@ -9,7 +9,6 @@ def get_states():
     """Connects to MySQL and lists all states"""
 
     if len(sys.argv) != 4:
-        #print("Usage: ./script.py <mysql username> <mysql password> <database name>")
         sys.exit(1)
 
     username = sys.argv[1]
