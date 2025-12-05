@@ -1,35 +1,42 @@
 #!/usr/bin/python3
-""" text_indentation returns "text" in the specified format:
-2 newlines after each ['.', '?', ':']
+"""
+text identation module:
+indents text
+useful
 """
 
 
 def text_indentation(text):
-    """ prints "text" with 2 newlines after each of these char: ['.', '?', ':']
-    checks if "text" is a str
-    first loop removes spaces after each required chars
-    second loop adds 2 newlines after each required chars
+    """text must be a string, There should be no space
+    at the beginning
+    or at the end of each printed line.
     """
-    if type(text) != str:
+    # text is a string, otherwise raise a TypeError
+    if isinstance(text, str) is False:
         raise TypeError("text must be a string")
-    toCatAfter = ['.', '?', ':']
 
-    # Removes the space after special chars
-    idx = 0
-    for items in text:
-        if items in toCatAfter:
-            if text[idx + 1] == " ":
-                text = text[:idx + 1] + text[idx + 2:]
-        else:
-            idx += 1
+    # if text is None or not isinstance(text, str) or len(text) < 0:
+    # raise TypeError('must be a string')
+    # string.replace(old, new, count)
+    # prints a text with 2 new lines
+    text = text.replace('.', '.\n\n')
+    text = text.replace('?', '?\n\n')
+    text = text.replace(':', ':\n\n')
+    # 1) cut the entire line with \n
+    # 2) cut by separator with \n
+    # to the line that was strip (for.,?)
+    # loop text and split where "\n" is)
+    # end =""no space output promp line)
+    # there should be no spaces at the beginning
+    # and the end, line strip metodo
 
-    # Cats '\n\n' after the special char with removed space
-    idx = 0
-    for items in text:
-        if items in toCatAfter:
-            text = text[:idx + 1] + '\n\n' + text[idx + 1:]
-            idx += 3
-        else:
-            idx += 1
+    print("\n".join([line.strip() for line in text.split("\n")]), end="")
 
-    print(text, end='')
+    # if isinstance(text, str) is False:
+    # raise TypeError("text must be a string")
+    # delim = ":.?"
+    # for x in delim:
+    # text = text.replace(x, "{}\n\n".format(x))
+    # text = text.replace('\\', '')
+    # text = "\n".join([line.strip() for line in text.split('\n')])
+    # print(text, end="")
