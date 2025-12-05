@@ -1,12 +1,8 @@
 #!/usr/bin/python3
-"""
-A rectangle.
-"""
+" Module: wich contain a class Rectangle"
 
 
 class Rectangle:
-    """
-    Rectangle functions and data
-    """
-
+    """ Rectangle class """
     pass
+    # An empty block
