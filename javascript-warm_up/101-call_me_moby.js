@@ -1,8 +1,7 @@
 #!/usr/bin/node
-// JS Script
 
 exports.callMeMoby = function (x, theFunction) {
-  for (let i = 0; i < x; i++) {
+  for (let i = 0; i < x; i += 1) {
     theFunction();
   }
 };
