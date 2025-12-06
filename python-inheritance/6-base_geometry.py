@@ -1,14 +1,13 @@
 #!/usr/bin/python3
-"""BaseGeometry
+"""
+Module for BaseGeometry
 """
 
 
 class BaseGeometry:
-    """Contains a function area()
     """
-
+    still empty, area not implemented
+    """
+    # public instance method
     def area(self):
-        """Function not implemented yet
-        """
-
         raise Exception("area() is not implemented")

@@ -1,69 +1,44 @@
-Using class ``BaseGeometry``
------------------------
+============================================
+How to use 7-base_geometry_1.txt
+============================================
 
-Class BaseGeometry contains functions that validates given parameters
-Currently contains function area(): not implemented
-Currently contains function integer_validator(name, value):
-  - Validates `value` if it is an integer
-  - Returns nothing if True
+This module contains tests for the BaseGeometry and Rectangle classes.
 
-First import class ``BaseGeometry``
+:: Importing BaseGeometry and Rectangle
+   >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+   >>> Rectangle = __import__('7-base_geometry').Rectangle
 
-    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+:: Creating an instance of BaseGeometry
+   >>> bg = BaseGeometry()
 
-Now use it:
+:: Testing area method
+   >>> bg.area()
+   Traceback (most recent call last):
+   Exception: area() is not implemented
 
-Function area():
-    >>> bg = BaseGeometry()
-    >>> bg.area()
-    Traceback (most recent call last):
-    ...
-    Exception: area() is not implemented
+:: Testing integer_validator method with invalid input
+   >>> bg.integer_validator("age", "twenty")
+   Traceback (most recent call last):
+   TypeError: age must be an integer
 
-Function integer_validator basic usage:
-    >>> bg.integer_validator("holberton", 98)
+   >>> bg.integer_validator("age", -10)
+   Traceback (most recent call last):
+   ValueError: age must be greater than 0
 
-Function integer_validator 0 input usage:
-    >>> bg.integer_validator("holberton", 0)
-    Traceback (most recent call last):
-    ...
-    ValueError: holberton must be greater than 0
+:: Creating an instance of Rectangle
+   >>> r = Rectangle(3, 6)
+   >>> print(r)
+   [Rectangle] 3/6
 
-Function integer_validator negative input usage:
-    >>> bg.integer_validator("holberton", -1)
-    Traceback (most recent call last):
-    ...
-    ValueError: holberton must be greater than 0
+:: Testing area method of Rectangle
+   >>> r.area()
+   18
 
-Function integer_validator non int input usage:
-    >>> bg.integer_validator("holberton", "school")
-    Traceback (most recent call last):
-    ...
-    TypeError: holberton must be an integer
+:: Testing invalid inputs for Rectangle
+   >>> r = Rectangle("3", 6)
+   Traceback (most recent call last):
+   TypeError: width must be an integer
 
-Function integer_validator infinity input usage:
-    >>> bg.integer_validator("holberton", float("inf"))
-    Traceback (most recent call last):
-    ...
-    TypeError: holberton must be an integer
-
-Function integer_validator large int input usage:
-    >>> bg.integer_validator("holberton", 9999999999999999999999999)
-
-Function integer_validator float input usage:
-    >>> bg.integer_validator("holberton", 90.8)
-    Traceback (most recent call last):
-    ...
-    TypeError: holberton must be an integer
-
-Function integer_validator list usage:
-    >>> bg.integer_validator("holberton", [90])
-    Traceback (most recent call last):
-    ...
-    TypeError: holberton must be an integer
-
-Function integer_validator no input usage:
-    >>> bg.integer_validator()
-    Traceback (most recent call last):
-    ...
-    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+   >>> r = Rectangle(3, -6)
+   Traceback (most recent call last):
+   ValueError: height must be greater than 0
