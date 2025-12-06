@@ -1,54 +1,59 @@
+#!/usr/bin/python3
 import os
+"""Program defines function that generates personalized invitation files
+"""
 
 def generate_invitations(template, attendees):
-    """
-    Generates personalized invitation files from a template and list of attendee dictionaries.
-    Handles errors and missing data gracefully.
+    """Function generates invitations
 
     Args:
-        template (str): Template string with placeholders.
-        attendees (list): List of dictionaries with attendee data.
+        template (str)
+        attendees (list)
+
+    Returns:
+        _type_: _description_
     """
-    # Check if template is a string
-    if not isinstance(template, str):
-        print("Error: Template must be a string.")
+
+    if not isinstance(template, str) or template is None: 
+        print("Template is supposed to be a string")
+        return
+    
+    if not isinstance(attendees, list) or attendees is None:
+        print("Attendees is supposed to be a list")
         return
 
-    # Check if attendees is a list of dictionaries
-    if not (isinstance(attendees, list) and all(isinstance(a, dict) for a in attendees)):
-        print("Error: Attendees must be a list of dictionaries.")
-        return
-
-    # Check empty template
-    if template.strip() == "":
+    if not template:
         print("Template is empty, no output files generated.")
         return
-
-    # Check empty attendees
+    
     if not attendees:
         print("No data provided, no output files generated.")
         return
+    
+    
+    try:
+        for x, attendee in enumerate(attendees, start=1):
+            attendee_name = attendee.get("name") or "N/A"
+            attendee_title = attendee.get("event_title") or "N/A"
+            attendee_date = attendee.get("event_date") or "N/A"
+            attendee_location = attendee.get("event_location") or "N/A"
 
-    # For each attendee, generate a personalized invitation
-    for idx, attendee in enumerate(attendees, 1):
-        # Prepare values and replace None or missing with "N/A"
-        values = {}
-        for key in ["name", "event_title", "event_date", "event_location"]:
-            val = attendee.get(key)
-            if val is None:
-                values[key] = "N/A"
-            else:
-                values[key] = str(val)
 
-        # Replace placeholders
-        invitation = template
-        for key in values:
-            invitation = invitation.replace("{" + key + "}", values[key])
+            replace_name = "{name}"
+            replace_title = "{event_title}"
+            replace_date = "{event_date}"
+            replace_location = "{event_location}"
 
-        # Write to output file
-        filename = f"output_{idx}.txt"
-        try:
-            with open(filename, "w") as f:
-                f.write(invitation)
-        except Exception as e:
-            print(f"Error writing to {filename}: {e}")
+            replace_text = template.replace(replace_name, attendee_name).replace(replace_title, attendee_title).replace(replace_date, attendee_date).replace(replace_location, attendee_location)
+            current_file = f"output_{x}.txt"
+
+            if os.path.exists(current_file):
+                print(f"{current_file} already exists")
+                continue
+            
+            with open(current_file, 'w') as output:
+                output.write(replace_text)
+
+    except Exception as e:
+        print(f"{e} found")
+        return

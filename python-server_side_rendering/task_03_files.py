@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from read_json import read, read_csv, read_json, read_db
+from read_json import read, read_csv, read_json
 
 
 app = Flask(__name__)
@@ -28,15 +28,10 @@ def display_products():
     source = request.args.get('source')
     product_id = request.args.get('id')
 
-    if source not in ['json', 'csv', 'sql']:
-        return render_template('product_display.html', error="Wrong source")
-
     if source == 'json':
         products = read_json()
     elif source == 'csv':
         products = read_csv()
-    elif source == 'sql':
-        products = read_db()
     else:
         return render_template('product_display.html', error="Wrong source")
     
