@@ -28,12 +28,11 @@ class NewHandler(http.server.BaseHTTPRequestHandler):
             self.wfile.write(b"OK")
 
         else:
+            # Undefined endpoint: 404 with EMPTY body
             self.send_response(404)
-            self.send_header("Content-type", "text/plain")
             self.end_headers()
-            self.wfile.write(b'404 Not Found')
 
 
 with socketserver.TCPServer(("", 8000), NewHandler) as httpd:
-    print(f"Serving at port {8000}")
+    print("Serving at port 8000")
     httpd.serve_forever()
