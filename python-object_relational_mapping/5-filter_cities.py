@@ -39,5 +39,5 @@ def list_cities():
         db.close()
 
 
-    if __name__ == "__main__":
-        list_cities()
+if __name__ == "__main__":
+    list_cities()
