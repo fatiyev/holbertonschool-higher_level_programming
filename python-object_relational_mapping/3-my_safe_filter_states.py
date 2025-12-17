@@ -34,5 +34,6 @@ def filter_names_safe():
     else:
         return
 
+
 if __name__ == "__main__":
     filter_names_safe()
