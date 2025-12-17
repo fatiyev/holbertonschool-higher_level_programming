@@ -44,4 +44,3 @@ def get_states():
 
 if __name__ == "__main__":
     get_states()
-    
