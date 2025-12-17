@@ -28,9 +28,8 @@ class NewHandler(http.server.BaseHTTPRequestHandler):
             self.wfile.write(b"OK")
 
         else:
-            # Undefined endpoint: 404 with EMPTY body
-            self.send_response(404)
-            self.end_headers()
+            # IMPORTANT: use default 404 handler
+            self.send_error(404)
 
 
 with socketserver.TCPServer(("", 8000), NewHandler) as httpd:
