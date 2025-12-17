@@ -41,5 +41,7 @@ def get_states():
         except Exception:
             pass
 
+
 if __name__ == "__main__":
     get_states()
+    
