@@ -21,5 +21,6 @@ def update_to_state_obj():
 
     session.close()
 
+
 if __name__ == "__main__":
     update_to_state_obj()
