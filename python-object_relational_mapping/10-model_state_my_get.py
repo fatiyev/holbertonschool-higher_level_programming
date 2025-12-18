@@ -25,7 +25,7 @@ def list_arg_state_obj():
     if res != "":
         print(res)
     else:
-        print("Not Found")
+        print("Not found")
 
     session.close()
 

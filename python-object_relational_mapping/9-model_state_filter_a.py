@@ -22,5 +22,6 @@ def list_a_state_obj():
 
     session.close()
 
+
 if __name__ == "__main__":
     list_a_state_obj()
