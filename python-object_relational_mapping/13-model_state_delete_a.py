@@ -24,5 +24,7 @@ def delete_a_state_obj():
 
     session.close()
 
+
+
 if __name__ == "__main__":
     delete_a_state_obj()

@@ -29,5 +29,6 @@ def list_arg_state_obj():
 
     session.close()
 
+
 if __name__ == "__main__":
     list_arg_state_obj()
