@@ -21,5 +21,6 @@ def insert_to_state_obj():
 
     session.close()
 
+
 if __name__ == "__main__":
     insert_to_state_obj()
