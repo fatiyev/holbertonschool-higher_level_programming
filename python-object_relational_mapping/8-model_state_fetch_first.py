@@ -23,5 +23,6 @@ def list_first_state_obj():
 
     session.close()
 
+
 if __name__ == "__main__":
     list_first_state_obj()
